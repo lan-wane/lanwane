@@ -1,0 +1,701 @@
+/* 深色样式 */
+
+/* 全局重置：消除默认样式差异，统一盒模型 */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Microsoft Yahei", "PingFang SC", "Helvetica Neue", sans-serif;
+}
+
+/* 根元素变量：统一管理所有颜色 */
+:root {
+    /* ========== 页面全局 ========== */
+    --page-bg-color: #161616;
+    --text-color: #e5e5e5;
+    --text-active: #ffffff;
+    --text-placeholder: #999999;
+    --border-color: #333333;
+    --shadow-color-1: rgba(0, 0, 0, 0.15);
+    --content-text-color: #fff;
+
+    /* ========== 滚动条 ========== */
+    --scrollbar-track-color: #1e1e1e;
+    --scrollbar-thumb-color: #666;
+    --scrollbar-thumb-hover-color: #888;
+
+    /* ========== 顶栏 (Header) ========== */
+    --header-bg-gradient-center: #fff;
+    --header-bg-blur: rgba(12, 12, 12, 0.4);
+    --header-logo-text-color: var(--text-active);
+    --header-logo-subtext-color: var(--text-placeholder);
+    --header-nav-btn-color: var(--text-color);
+    --header-nav-btn-select-color: var(--text-active);
+    --header-search-bg: rgba(44, 44, 44, 0.2);
+    --header-search-input-text-color: var(--text-active);
+    --header-search-input-border-color: var(--border-color);
+    --header-search-input-focus-border-color: #018dff;
+    --header-search-input-focus-shadow-color: rgba(1, 141, 255, 0.1);
+    --header-search-btn-color: var(--text-placeholder);
+    --header-search-btn-hover-color: #018dff;
+
+    /* ========== 下拉菜单 (Dropdown) ========== */
+    --dropdown-bg: #252525;
+    --dropdown-hover-bg: #303030;
+    --dropdown-border: #3a3a3a;
+    --dropdown-column-title-color: #ffffff;
+    --dropdown-item-color: #e0e0e0;
+    --dropdown-item-hover-color: #ffffff;
+    --dropdown-title-icon-color: #888888;
+
+    /* ========== 导航按钮 (Nav Buttons) ========== */
+    --nav-btn-hover-color: #018dff;
+    --nav-btn-vip-hover-color: #ffb300;
+    --nav-btn-select-underline-color: #018dff;
+    --nav-btn-select-hover-underline-color: #01bbff;
+
+    /* ========== 个人信息区域 (Per-info) ========== */
+    --per-info-border-top-color: #FFFFFF;
+    --per-info-desc-color: #E0E0E0;
+    --per-info-name-color: #FEFEFE;
+    --per-info-highlight-color: #0191ff;
+
+    /* ========== 动画变量：控制速度 ========== */
+    --slow-duration: 0.6s; /* 慢速展开/收回动画时长 */
+    --fast-duration: 0.2s; /* 快速渐隐动画时长（快速切换时） */
+    --player-animation-duration: 0.3s; /* 播放器切换动画时长 */
+}
+
+@font-face {
+  /* 给字体起个名字（自定义，比如叫myFont） */
+  font-family: 'EnglishFont';
+  /* 字体文件路径：从CSS文件所在目录指向fonts/a.ttf */
+  src: url('../../media/fonts/CascadiaCode_VTT.ttf') format('truetype');
+  /* 可选：字体权重/样式，保持默认即可 */
+  font-weight: normal;
+  font-style: normal;
+  /* 可选：提升加载性能，优先使用本地已安装的同名字体 */
+  font-display: swap;
+}
+
+@font-face {
+  /* 给字体起个名字（自定义，比如叫myFont） */
+  font-family: 'ChineseFont';
+  /* 字体文件路径：从CSS文件所在目录指向fonts/a.ttf */
+  src: url('../../media/fonts/STXINGKA.TTF') format('truetype');
+  /* 可选：字体权重/样式，保持默认即可 */
+  font-weight: normal;
+  font-style: normal;
+  /* 可选：提升加载性能，优先使用本地已安装的同名字体 */
+  font-display: swap;
+}
+
+/* 滚动条 */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+/* 轨道背景 */
+::-webkit-scrollbar-track {
+  background: var(--scrollbar-track-color);
+}
+
+/* 滑块 */
+::-webkit-scrollbar-thumb {
+  background: var(--scrollbar-thumb-color);
+  border-left: 2px solid var(--scrollbar-track-color);
+  border-right: 2px solid var(--scrollbar-track-color);
+  border-radius: 2px;
+  /* 平滑动画：所有属性一起过渡 */
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* 悬停 */
+::-webkit-scrollbar-thumb:hover {
+  background: var(--scrollbar-thumb-hover-color);
+}
+
+/* 拖动 */
+::-webkit-scrollbar-thumb:active {
+  background: var(--scrollbar-thumb-hover-color);
+}
+
+/* Firefox */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--scrollbar-thumb-color) var(--scrollbar-track-color);
+}
+
+html, body {
+    background-color: var(--page-bg-color);
+    color: var(--text-color);
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    overflow-x: hidden !important;
+    overflow-y: auto;
+    scroll-behavior: smooth;
+}
+
+/* 顶栏核心样式：固定顶部+三栏布局（Logo左-导航中-搜索右） */
+.hea {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: calc(100% - 10.5px);
+    height: 72px;
+    background: 
+        linear-gradient(to right, 
+            transparent 0%,
+            transparent 3%,
+            var(--header-bg-gradient-center) 50%,
+            transparent 97%,
+            transparent 100%
+        ) bottom center / 100% 2px no-repeat,
+        var(--header-bg-blur); /* 半透明背景 ✅ */
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 24px;
+    z-index: 1000;
+    backdrop-filter: blur(8px)
+}
+
+/* Logo区域：图片+文字横向排列，垂直居中 */
+.hea-logo {
+    display: flex;
+    align-items: center; /* 图片与文字容器垂直居中 */
+    gap: 12px; /* 图片与文字的间距，简约不拥挤 */
+}
+
+/* 文字容器：纵向排列（碧海博客 + BIHAI BLOG） */
+.logo-text-group {
+    display: flex;
+    flex-direction: column; /* 两行文字垂直换行 */
+    gap: 2px; /* 两行文字间距，紧凑简约 */
+    justify-content: center; /* 文字在容器内垂直居中 */
+}
+
+/* Logo主标题样式 */
+.hea-text {
+    font-size: 20px;
+    font-weight: 600; /* 适度加粗，突出主标题 */
+    color: var(--header-logo-text-color);
+    letter-spacing: 1px; /* 轻微字间距，更显整洁 */
+    line-height: 1; /* 消除冗余行高，排版紧凑 */
+    transform: translateY(2px);
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+}
+
+/* Logo副标题样式 */
+.hea-subtext {
+    font-size: 10px; /* 小号字体，区分主副标题 */
+    color: var(--header-logo-subtext-color);
+    letter-spacing: 0.5px;
+    line-height: 1; /* 消除冗余行高 */
+    transform: translateY(2px);
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+}
+
+.hea-nav {
+    display: flex;
+    align-items: center; /* 按钮垂直居中 */
+    /* 核心：每增加≈47.33px（284/6），间距增加1px */
+    gap: clamp(
+        18px,          /* 最小间距（宽度≤1244px时） */
+        calc(18px + (100vw - 1244px) / (284/6)), /* 线性增长：(宽度-1244)÷47.33=新增间距 */
+        28px           /* 最大间距（宽度足够大时） */
+    );
+    position: relative; /* 为下拉菜单提供定位上下文 */
+    flex-wrap: wrap;    /* 防止宽度过小时间距挤压 */
+    padding: 0 10px;
+    margin: 0 auto;
+    width: fit-content;
+}
+
+/* 导航按钮通用样式：无交互效果，简约整洁 */
+.hea-btn {
+    background-color: transparent; /* 透明背景，简约风格 */
+    color: var(--header-nav-btn-color);
+    border: none; /* 去掉默认边框 */
+    outline: none; /* 去掉聚焦轮廓 */
+    font-size: 14px;
+    font-weight: 500;
+    padding: 8px 12px; /* 合适内边距，保证视觉均衡 */
+    cursor: default; /* 去掉手型光标，无交互提示 */
+    line-height: 1;
+    text-align: center;
+    border-radius: 2px; /* 极轻微圆角，不夸张 */
+    transition: color 0.3s ease, background-color 0.3s ease; /* 加入颜色过渡动画 */
+}
+
+/* 普通按钮悬停样式：文字变为蓝色（016fff），仅对非选中态生效 */
+.hea-btn:not(.hea-btn-select):hover {
+    color: var(--nav-btn-hover-color); /* 悬停变蓝字 */
+    cursor: pointer; /* 可选：恢复手型光标，提示用户可交互 */
+}
+
+.hea-btn-vip {
+    background-color: transparent; /* 透明背景，简约风格 */
+    color: var(--header-nav-btn-color);
+    border: none; /* 去掉默认边框 */
+    outline: none; /* 去掉聚焦轮廓 */
+    font-size: 14px;
+    font-weight: 500;
+    padding: 8px 12px; /* 合适内边距，保证视觉均衡 */
+    cursor: default; /* 去掉手型光标，无交互提示 */
+    line-height: 1;
+    text-align: center;
+    border-radius: 2px; /* 极轻微圆角，不夸张 */
+    transition: color 0.3s ease, background-color 0.3s ease; /* 加入颜色过渡动画 */
+}
+
+/* 普通按钮悬停样式：文字变为蓝色（016fff），仅对非选中态生效 */
+.hea-btn-vip:not(.hea-btn-select):hover {
+    color: var(--nav-btn-vip-hover-color); /* 悬停变字 */
+    cursor: pointer; /* 可选：恢复手型光标，提示用户可交互 */
+}
+
+/* 导航项容器（包含按钮和下拉菜单）- 增加鼠标进出监听类 */
+.hea-nav > div {
+    position: relative; /* 为下拉菜单提供定位上下文 */
+    /* 记录鼠标离开时间，用于判断是否快速切换 */
+    --mouse-leave-time: 0;
+}
+
+/* -------------------------- 智能动画下拉菜单（慢速展开/收回+快速切换渐隐） -------------------------- */
+/* 一级下拉菜单：默认双列布局，简洁规整 */
+.dropdown-menu {
+    position: absolute;
+    top: calc(100% + 4px);
+    left: 0;
+    background-color: var(--dropdown-bg);
+    border: 1px solid var(--dropdown-border);
+    border-radius: 4px; /* 火绒风格小圆角，简洁低调 */
+    box-shadow: 0 2px 8px var(--shadow-color-1); /* 火绒式柔和阴影 */
+    display: flex;
+    gap: 0;
+    min-width: 440px; /* 双列默认宽度，保证布局规整 */
+    z-index: 1001;
+    visibility: hidden;
+    max-height: 0; /* 初始高度为0，隐藏内容 */
+    overflow: hidden;
+    opacity: 1; /* 正常状态下不渐隐，仅快速切换时改变 */
+    /* 默认慢速动画：仅过渡max-height（上下展开/收回） */
+    transition: max-height var(--slow-duration) ease-in-out,
+                visibility 0s linear var(--slow-duration); /* 延迟隐藏，等待高度过渡完成 */
+}
+
+/* 单列下拉菜单样式（适用于内容较少的导航项，无标题更简洁） */
+.dropdown-menu.single-column {
+    min-width: 220px;
+    max-width: 300px;
+}
+
+/* 下拉菜单列容器：双列均分，布局清晰 */
+.dropdown-column {
+    flex: 1;
+    padding: 16px 0;
+    border-right: 1px solid var(--dropdown-border); /* 列之间分隔线，清晰区分 */
+}
+
+/* 单列模式下的全宽列（取消分隔线，无标题更简洁） */
+.dropdown-column.full-width {
+    border-right: none;
+    padding: 16px;
+    width: 100%;
+}
+
+/* 最后一列取消右侧分隔线 */
+.dropdown-menu > .dropdown-column:last-child {
+    border-right: none;
+}
+
+/* 列标题样式：仅大分区显示，带图标（简洁大气） */
+.dropdown-column-title {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--dropdown-column-title-color);
+    padding: 0 20px 12px 20px;
+    margin: 0;
+    letter-spacing: 0.5px;
+    display: flex;
+    align-items: center;
+    gap: 8px; /* 图标与标题间距，紧凑简洁 */
+}
+
+/* 大分区标题图标样式 */
+.dropdown-column-title i {
+    font-size: 14px;
+    color: var(--dropdown-title-icon-color);
+    width: 16px;
+    text-align: center;
+}
+
+/* 下拉菜单项样式：无图标，简洁规整 */
+.dropdown-item {
+    display: block; /* 取消flex，纯文字更简洁 */
+    padding: 10px 20px;
+    color: var(--dropdown-item-color);
+    text-decoration: none;
+    font-size: 13px;
+    line-height: 1.4;
+    transition: all 0.2s ease;
+    white-space: nowrap;
+}
+
+/* 菜单项悬停效果：火绒风格，柔和背景变化 */
+.dropdown-item:hover {
+    background-color: var(--dropdown-hover-bg);
+    color: var(--dropdown-item-hover-color);
+}
+
+/* 1. 正常状态：鼠标悬停 - 慢速向下展开 */
+.hea-nav > div:hover > .dropdown-menu {
+    visibility: visible;
+    max-height: 500px; /* 足够大的高度，容纳所有内容 */
+    transition: max-height var(--slow-duration) ease-in-out,
+                visibility 0s linear 0s; /* 立即显示，同步展开高度 */
+}
+
+/* 2. 正常状态：鼠标移开 - 慢速向上收回（无渐隐） */
+.hea-nav > div:not(:hover) > .dropdown-menu {
+    max-height: 0;
+    visibility: hidden;
+    /* 仅过渡高度，不过渡opacity，保持无渐隐效果 */
+    transition: max-height var(--slow-duration) ease-in-out,
+                visibility 0s linear var(--slow-duration);
+}
+
+/* 3. 快速切换状态：给导航容器添加hover快速切换检测（通过相邻兄弟选择器实现） */
+/* 当鼠标快速从一个导航项移到另一个导航项时，触发快速渐隐动画 */
+.hea-nav > div:hover + div > .dropdown-menu,
+.hea-nav > div:hover ~ div > .dropdown-menu,
+.hea-nav > div:has(+ div:hover) > .dropdown-menu,
+.hea-nav > div:has(~ div:hover) > .dropdown-menu {
+    max-height: 0;
+    opacity: 0;
+    visibility: hidden;
+    /* 快速渐隐动画：同时过渡max-height和opacity，取消延迟 */
+    transition: max-height var(--fast-duration) ease-in-out,
+                opacity var(--fast-duration) ease-in-out,
+                visibility 0s linear 0s;
+}
+
+/* ---------------------------------------------------------------------------------------- */
+
+/* 选中态按钮样式 */
+.hea-btn-select {
+    font-weight: 600;
+    color: var(--header-nav-btn-select-color);
+    position: relative;
+    transition: background-color 0.3s ease, border-radius 0.3s ease;
+    padding: 8px 12px;
+}
+
+/* 用伪元素实现底部蓝色下划线 */
+.hea-btn-select::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 80%;
+    height: 3px;
+    background-color: var(--nav-btn-select-underline-color);
+    border-radius: 1px;
+    left: 50%;
+    transform: translateX(-50%);
+    transition: width 0.3s ease, background-color 0.3s ease, height 0.3s ease;
+}
+
+/* 第一个按钮（选中态）悬停时下划线变化 */
+.hea-btn-select:first-child:hover::after {
+    width: 95%;
+    background-color: var(--nav-btn-select-hover-underline-color);
+    height: 2.5px;
+}
+
+/* 右侧功能区：搜索框容器，垂直居中 */
+.hea-actions {
+    display: flex;
+    align-items: center;
+    gap: 16px; /* 预留间距，后续扩展不拥挤 */
+}
+
+/* 搜索框组件：一体化简约样式 */
+.hea-search {
+    position: relative;
+    width: 240px; /* 搜索框宽度，简约适中 */
+}
+
+/* 搜索输入框样式 */
+.hea-search-input {
+    width: 100%;
+    height: 36px;
+    background: var(--header-search-bg);
+    color: var(--header-search-input-text-color);
+    border: 1px solid var(--header-search-input-border-color);
+    border-radius: 18px; /* 圆形搜索框，简约美观 */
+    padding: 0 16px 0 40px; /* 左侧预留搜索图标位置 */
+    outline: none; /* 去掉聚焦轮廓，无交互提示 */
+    font-size: 14px;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* 搜索框聚焦效果 */
+.hea-search-input:focus {
+    border-color: var(--header-search-input-focus-border-color);
+    box-shadow: 0 0 0 2px var(--header-search-input-focus-shadow-color);
+}
+
+/* 搜索框占位符文字样式 */
+.hea-search-input::placeholder {
+    color: var(--header-search-input-text-color);
+    font-size: 13px;
+}
+
+/* 搜索按钮样式：无交互，简约图标 */
+.hea-search-btn {
+    position: absolute;
+    left: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: transparent;
+    color: var(--header-search-btn-color);
+    border: none;
+    outline: none;
+    font-size: 14px;
+    width: 20px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer; /* 手型光标提示可点击 */
+    transition: color 0.2s ease;
+}
+
+/* 搜索按钮悬停效果 */
+.hea-search-btn:hover {
+    color: var(--header-search-btn-hover-color);
+}
+
+/* 动画关键帧：保留备用 */
+@keyframes fadeInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeInRight {
+    from {
+        opacity: 0;
+        transform: translateX(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* 使用关键帧动画的类（可选） */
+.fade-in-down {
+    animation: fadeInDown 0.3s ease forwards;
+}
+
+.fade-in-right {
+    animation: fadeInRight 0.3s ease forwards;
+}
+
+.video-container {
+    width: 100%;
+    height: 100vh; /* 关键：只占一屏高度 */
+    position: relative;
+    overflow: hidden;
+    scroll-behavior: smooth;
+}
+
+#bgVideo {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 0;
+    display: block !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    scroll-behavior: smooth;
+}
+
+.content {
+    position: relative;
+    left: 0;
+    right: 0;
+    color: var(--content-text-color);
+    min-height: calc(100vh - 72px);
+    overflow: hidden !important;
+    scroll-behavior: smooth;
+}
+
+.per-info {
+    width: 100vw;
+    height: auto;
+    border-top: 2px solid var(--per-info-border-top-color);
+    text-align: center;
+}
+
+.per-info-title {
+    position: absolute;
+    width: auto;
+    height: auto;
+    margin-top: 88px;
+    left: 8%;
+    transform: translateX(-50%);
+    font-size: 52px;
+    font-weight: 400;
+    transition: opacity 0.8s cubic-bezier(0.2, 0.9, 0.4, 1.1),
+                transform 0.8s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+    opacity: 0;
+    line-height: 1.2;
+}
+
+.per-info-title span {
+    color: var(--per-info-highlight-color);
+    font-size: 56px;
+    font-weight: 600;
+    margin-left: 6px;
+    /* #0191ff; */
+}
+
+.per-info-desc {
+    position: absolute;
+    left: 8%;
+    max-width: 42vw;
+    width: 42vw;
+    transform: translateY(33px);
+    text-align: left;
+    color: var(--per-info-desc-color);
+    font-size: 26px;
+    line-height: 1.8;
+    letter-spacing: 0.5px;
+    margin-top: 14%;
+    transition: opacity 0.8s cubic-bezier(0.2, 0.9, 0.4, 1.1),
+                transform 0.8s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+    opacity: 0;
+}
+
+.per-info-name {
+    margin-top: 9%;
+    width: auto;
+    transform: translateY(33px);
+    text-align: left;
+    color: var(--per-info-name-color);
+    font-size: 36px;
+    transition: opacity 0.8s cubic-bezier(0.2, 0.9, 0.4, 1.1),
+                transform 0.8s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+    opacity: 0;
+    line-height: 1.88;
+    letter-spacing: 1px;
+    opacity: 0.95;
+}
+
+.per-info-name span {
+    color: var(--per-info-highlight-color);
+    font-weight: 700;
+}
+
+.per-info-platf {
+    position: absolute;
+    width: auto;
+    height: auto;
+    margin-top: 88px;
+    left: 58%;
+    transform: translateX(50%);
+    font-size: 52px;
+    font-weight: 400;
+    transition: opacity 0.8s cubic-bezier(0.2, 0.9, 0.4, 1.1),
+                transform 0.8s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+    opacity: 0;
+    line-height: 1.2;
+}
+
+.per-info-platf span {
+    color: var(--per-info-highlight-color);
+    font-weight: 700;    
+}
+
+.per-info-platf-name {
+    position: absolute;
+    left: 58%;
+    top: 28%;
+    font-size: 36px;
+    font-weight: 400;
+
+    /* 布局对齐（必须） */
+    display: flex;
+    flex-direction: column; /* 竖排 */
+    align-items: flex-start;
+}
+
+/* 每一行的样式：图标 + 文字对齐 */
+.per-info-platf-name span {
+    display: flex;
+    gap: 20px;
+    margin-top: 24px;
+    align-items: center;
+    white-space: nowrap;
+    transform: translateY(33px);
+    transition: opacity 0.8s cubic-bezier(0.2, 0.9, 0.4, 1.1),
+                transform 0.8s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+    opacity: 0;
+}
+
+.per-info-platf-name div {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    white-space: nowrap;
+    transform: translateY(33px);
+    transition: opacity 0.8s cubic-bezier(0.2, 0.9, 0.4, 1.1),
+                transform 0.8s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+    opacity: 0;
+}
+
+.per-info-platf-name img {
+    width: 42px;
+    height: 42px;
+    margin-right: 8px;
+}
+
+.per-info-platf-name span > i:not(.fas.fa-link),
+.per-info-platf-name span > img,
+.per-info-platf-name div > text,
+.per-info-platf-name span > text {
+  cursor: default; /* 鼠标悬浮保持箭头，明确不可点击 */
+  user-select: none; /* 禁止选中，避免误操作 */
+  pointer-events: none; /* 彻底屏蔽点击事件，防止误触 */
+}
+
+.per-info-platf-name a {
+    /* 把过渡写在默认状态，移入移出都生效 */
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.per-info-platf-name a:hover {
+    transform: scale(1.15);
+}
