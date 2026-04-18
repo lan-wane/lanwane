@@ -239,7 +239,7 @@ html, body {
     transition: color 0.3s ease, background-color 0.3s ease; /* 加入颜色过渡动画 */
 }
 
-/* 普通按钮悬停样式：文字变为蓝色（3498db），仅对非选中态生效 */
+/* 普通按钮悬停样式：文字变为蓝色（016fff），仅对非选中态生效 */
 .hea-btn:not(.hea-btn-select):hover {
     color: var(--nav-btn-hover-color); /* 悬停变蓝字 */
     cursor: pointer; /* 可选：恢复手型光标，提示用户可交互 */
@@ -260,7 +260,7 @@ html, body {
     transition: color 0.3s ease, background-color 0.3s ease; /* 加入颜色过渡动画 */
 }
 
-/* 普通按钮悬停样式：文字变为蓝色（3498db），仅对非选中态生效 */
+/* 普通按钮悬停样式：文字变为蓝色（016fff），仅对非选中态生效 */
 .hea-btn-vip:not(.hea-btn-select):hover {
     color: var(--nav-btn-vip-hover-color); /* 悬停变字 */
     cursor: pointer; /* 可选：恢复手型光标，提示用户可交互 */
@@ -282,7 +282,7 @@ html, body {
     background-color: var(--dropdown-bg);
     border: 1px solid var(--dropdown-border);
     border-radius: 4px; /* 火绒风格小圆角，简洁低调 */
-    box-shadow: 0 2px 8px var(--shadow-color-2); /* 火绒式柔和阴影 */
+    box-shadow: 0 2px 8px var(--shadow-color-1); /* 火绒式柔和阴影 */
     display: flex;
     gap: 0;
     min-width: 440px; /* 双列默认宽度，保证布局规整 */
@@ -536,7 +536,7 @@ html, body {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    z-index: 0;
+    z-index: 1;
     display: block !important;
     opacity: 1 !important;
     visibility: visible !important;
@@ -580,7 +580,7 @@ html, body {
     font-size: 56px;
     font-weight: 600;
     margin-left: 6px;
-    /* #3498db; */
+    /* #0191ff; */
 }
 
 .per-info-desc {
@@ -685,6 +685,7 @@ html, body {
 
 .per-info-platf-name span > i:not(.fas.fa-link),
 .per-info-platf-name span > img,
+.per-info-platf-name div > text,
 .per-info-platf-name span > text {
   cursor: default; /* 鼠标悬浮保持箭头，明确不可点击 */
   user-select: none; /* 禁止选中，避免误操作 */
