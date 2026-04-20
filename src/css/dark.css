@@ -234,6 +234,7 @@ html, body {
     cursor: default; /* 去掉手型光标，无交互提示 */
     line-height: 1;
     text-align: center;
+    text-decoration: none;
     border-radius: 2px; /* 极轻微圆角，不夸张 */
     transition: color 0.3s ease, background-color 0.3s ease; /* 加入颜色过渡动画 */
 }

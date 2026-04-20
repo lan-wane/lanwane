@@ -22,7 +22,7 @@
             <nav class="hea-nav">
                 <button onclick="window.location.href='index.html';" class="hea-btn hea-btn-select">博客首页</button>
                 <div class="nav-dropdown">
-                    <button class="hea-btn">博客资源</button>
+                    <a class="hea-btn" href="src\html\test.html">博客资源</a>
                     <div class="dropdown-menu">
                         <div class="dropdown-column">
                             <h3 class="dropdown-column-title"><i class="fas fa-photo-film" style="color: #018dff;"></i> 媒体资源</h3>
@@ -48,7 +48,7 @@
                     </div>
                 </div>
                 <div class="nav-dropdown">
-                    <button class="hea-btn">文章内容</button>
+                    <a class="hea-btn">文章内容</a>
                     <div class="dropdown-menu">
                         <div class="dropdown-column">
                             <h3 class="dropdown-column-title"><img src="media/image/nav/minecraft.svg" alt="更多" style="width:14px; height:14px; vertical-align:middle; margin-right:8px;"> Minecraft</h3>
@@ -70,7 +70,7 @@
                     </div>
                 </div>
                 <div class="nav-dropdown">
-                    <button class="hea-btn">视频内容</button>
+                    <a class="hea-btn">视频内容</a>
                     <div class="dropdown-menu">
                         <div class="dropdown-column">
                             <h3 class="dropdown-column-title"><img src="media/image/nav/xiaohongshu.svg" alt="更多" style="width:14px; height:14px; vertical-align:middle; margin-right:8px;"> 小红书发布</h3>
@@ -89,7 +89,7 @@
                     </div>
                 </div>
                 <div class="nav-dropdown">
-                    <button class="hea-btn">本周资讯</button>
+                    <a class="hea-btn">本周资讯</a>
                     <div class="dropdown-menu single-column">
                         <div class="dropdown-column full-width">
                             <a href="#" class="dropdown-item">科技资讯</a>
@@ -100,7 +100,7 @@
                     </div>
                 </div>
                 <div class="nav-dropdown">
-                    <button class="hea-btn">快访快下</button>
+                    <a class="hea-btn">快访快下</a>
                     <div class="dropdown-menu single-column">
                         <div class="dropdown-column full-width">
                             <a href="#" class="dropdown-item">快捷访问</a>
@@ -108,8 +108,8 @@
                         </div>
                     </div>
                 </div>
-                <button class="hea-btn">博客设置</button>
-                <button class="hea-btn-vip">付费专区</button>
+                <a class="hea-btn">博客设置</a>
+                <a class="hea-btn-vip">付费专区</a>
             </nav>
             <div class="hea-actions">
                 <div class="hea-search">
@@ -162,47 +162,51 @@
 
         <main class="content">
             <div class="per-info">
-                <h1 class="per-info-title" id="animatedTitle">从这开始<span>认识我</span></h1>
-                <div class="per-info-desc" id="animatedText">
-                    很新的网站，没有KPI，苦逼的开发者，还有屏幕前的你；
-                    清净是这里的主旋律，这里没有喧嚣，只是静静的分享。
-                    喜欢的话还请留步。
-                    <p class="per-info-name" id="animatedName">记住我的名字: <span>澜湾</span></p>
-                </div>
-                <h1 class="per-info-platf" id="animatedPlatf">各大平台<span>账号</span></h1>
-                <div class="per-info-platf-name">
-                    <div id="animatedPlatfName1">
-                        <i class="fas fa-check"></i>
-                        <img src="media/image/preInfo/xiaohongshu.svg">
-                        <text>小红书</text>
-                        <a href="https://www.xiaohongshu.com/user/profile/63d61fa30000000026010345" target="_blank" rel="noopener noreferrer">
-                            <i class="fas fa-link" style="color:#018dff;font-size:20px;margin-left:6px;"></i>
-                        </a>
+                <div class="per-info-left">
+                    <h1 class="per-info-title" id="animatedTitle">从这开始<span>认识我</span></h1>
+                    <div class="per-info-desc" id="animatedText">
+                        很新的网站，没有KPI，苦逼的开发者，还有屏幕前的你；
+                        清净是这里的主旋律，这里没有喧嚣，只是静静的分享。
+                        喜欢的话还请留步。
+                        <p class="per-info-name" id="animatedName">记住我的名字: <span>澜湾</span></p>
                     </div>
-                    <span id="animatedPlatfName2">
-                        <i class="fas fa-check"></i>
-                        <i class="fa-brands fa-bilibili" style="margin-right:12px;color:#00ABE4"></i>
-                        <text>Bilibili</text>
-                        <a href="https://space.bilibili.com/3546813640477201?spm_id_from=333.1007.0.0" target="_blank" rel="noopener noreferrer">
-                            <i class="fas fa-link" style="color:#018dff;font-size:20px;margin-left:6px"></i>
-                        </a>
-                    </span>
-                    <span id="animatedPlatfName3">
-                        <i class="fas fa-check"></i>
-                        <img src="media/image/preInfo/douyin.png">
-                        <text>抖音</text>
-                        <a href="https://www.douyin.com/" target="_blank" rel="noopener noreferrer">
-                            <i class="fas fa-link" style="color:#018dff;font-size:20px;margin-left:6px"></i>
-                        </a>
-                    </span>
-                    <span id="animatedPlatfName4">
-                        <i class="fas fa-check"></i>
-                        <i class="fa-brands fa-github" style="margin-right:12px;"></i>
-                        <text>Github</text>
-                        <a href="https://github.com/lan-wane" target="_blank" rel="noopener noreferrer">
-                            <i class="fas fa-link" style="color:#018dff;font-size:20px;margin-left: 6px;"></i>
-                        </a>
-                    </span>
+                </div>
+                <div class="per-info-right">
+                    <h1 class="per-info-platf" id="animatedPlatf">各大平台<span>账号</span></h1>
+                    <div class="per-info-platf-name">
+                        <div id="animatedPlatfName1">
+                            <i class="fas fa-check"></i>
+                            <img src="media/image/preInfo/xiaohongshu.svg">
+                            <text>小红书</text>
+                            <a href="https://www.xiaohongshu.com/user/profile/63d61fa30000000026010345" target="_blank" rel="noopener noreferrer">
+                                <i class="fas fa-link" style="color:#018dff;font-size:20px;margin-left:6px;"></i>
+                            </a>
+                        </div>
+                        <span id="animatedPlatfName2">
+                            <i class="fas fa-check"></i>
+                            <i class="fa-brands fa-bilibili" style="margin-right:12px;color:#00ABE4"></i>
+                            <text>Bilibili</text>
+                            <a href="https://space.bilibili.com/3546813640477201?spm_id_from=333.1007.0.0" target="_blank" rel="noopener noreferrer">
+                                <i class="fas fa-link" style="color:#018dff;font-size:20px;margin-left:6px"></i>
+                            </a>
+                        </span>
+                        <span id="animatedPlatfName3">
+                            <i class="fas fa-check"></i>
+                            <img src="media/image/preInfo/douyin.png">
+                            <text>抖音</text>
+                            <a href="https://www.douyin.com/" target="_blank" rel="noopener noreferrer">
+                                <i class="fas fa-link" style="color:#018dff;font-size:20px;margin-left:6px"></i>
+                            </a>
+                        </span>
+                        <span id="animatedPlatfName4">
+                            <i class="fas fa-check"></i>
+                            <i class="fa-brands fa-github" style="margin-right:12px;"></i>
+                            <text>Github</text>
+                            <a href="https://github.com/lan-wane" target="_blank" rel="noopener noreferrer">
+                                <i class="fas fa-link" style="color:#018dff;font-size:20px;margin-left: 6px;"></i>
+                            </a>
+                        </span>
+                    </div>
                 </div>
             </div>
                 
